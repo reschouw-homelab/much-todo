@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "server.js", "--host=0.0.0.0"]
+ENTRYPOINT ["node", "server.js"]
