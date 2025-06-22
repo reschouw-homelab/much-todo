@@ -1,0 +1,2 @@
+# MySQL and other secrets needed for docker-compose
+secrets/*

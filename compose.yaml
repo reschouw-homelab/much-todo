@@ -8,6 +8,9 @@ services:
       - "8080:8080"
     networks:
       - much-todo
+    depends_on:
+      - much-todo-database
+
   much-todo-frontend:
     build:
       context: frontend/
@@ -18,5 +21,26 @@ services:
     networks:
       - much-todo
 
+  much-todo-database:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: much_todo
+      MYSQL_USER: much_todo_backend
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_user_password
+    ports:
+      - "3306:3306"
+    secrets:
+      - mysql_root_password
+      - mysql_user_password
+    networks:
+      - much-todo
+
 networks:
   much-todo:
+
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password.txt
+  mysql_user_password:
+    file: ./secrets/mysql_user_password.txt
