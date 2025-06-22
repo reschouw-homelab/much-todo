@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22.16.0
+ARG NODE_VERSION=20.11.1
 
 FROM node:${NODE_VERSION}-alpine AS builder
 
@@ -15,6 +15,6 @@ USER node
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
 CMD ["node", "src/main.jsx"]
