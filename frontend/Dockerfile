@@ -2,19 +2,19 @@ ARG NODE_VERSION=20.11.1
 
 FROM node:${NODE_VERSION}-alpine AS builder
 
-ENV NODE_ENV=production
+#ENV NODE_ENV=production
 
 WORKDIR /app
 
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+# RUN --mount=type=bind,source=package.json,target=package.json \
+#     --mount=type=bind,source=package-lock.json,target=package-lock.json \
+#     --mount=type=cache,target=/root/.npm \
+#     npm ci --omit=dev
 
-USER node
+#USER node
 
 COPY . .
 
-EXPOSE 5173
+EXPOSE 3000
 
-CMD ["node", "src/main.jsx"]
+CMD ["node", "server.js", "--host=0.0.0.0"]
