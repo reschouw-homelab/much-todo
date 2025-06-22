@@ -2,7 +2,7 @@ ARG NODE_VERSION=20.11.1
 
 FROM node:${NODE_VERSION}-alpine AS builder
 
-#ENV NODE_ENV=production
+ENV NODE_ENV=production
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ WORKDIR /app
 #     --mount=type=cache,target=/root/.npm \
 #     npm ci --omit=dev
 
-#USER node
+USER node
 
 COPY . .
 

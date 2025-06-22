@@ -1,0 +1,22 @@
+services:
+  much-todo-backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    image: much-todo-backend:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - much-todo
+  much-todo-frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    image: much-todo-frontend:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - much-todo
+
+networks:
+  much-todo:
